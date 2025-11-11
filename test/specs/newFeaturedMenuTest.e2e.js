@@ -14,4 +14,30 @@ describe('open New & Featured', () => {
         await newFeaturedPage.openNewFeatured();
     })
     
+    it('should open target new arrivals page successfully', async () => {
+        await newFeaturedPage.openTargetNewArrivals();
+    })
+
+    it('should open target finds page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openTargetFinds();
+    })  
+
+    it('should open target style page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openTargetstyle();
+    })  
+
+    it('should open Hanukkah page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openHanukkah();
+    }) 
+
+    it('should open store events page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openStoreEvents();
+    }) 
+
+
+
 });
