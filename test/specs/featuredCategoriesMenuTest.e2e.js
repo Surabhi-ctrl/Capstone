@@ -12,7 +12,7 @@ const expectedCategoryNames = [
 ];
 
 before(async function () {
-    await basePage.open();
+    await basePage.openTargetWebsite();
 });
 
 describe('Featured Categories Content and Usability Tests', () => {
