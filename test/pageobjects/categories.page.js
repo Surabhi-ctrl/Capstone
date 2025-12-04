@@ -19,7 +19,7 @@ class CategoriesPage {
         return $('//a[text()="Explore all"]');
     }
 
-    get target_new_arrivals_Selector() {
+    get pageHeaderTitle() {
         return $('[class="sc-ee6898d4-0 ihqHAP"]');
     }
 
@@ -28,15 +28,23 @@ class CategoriesPage {
         await expect(this.all_categories_title_Selector).toHaveText('All Categories');
     }
 
-    async categoryMenu(categoryMenuNumber,expectedPageTitle) {
-        await $(`[data-test="@web/CategoryMenu"] > div > a:nth-child(${categoryMenuNumber})`).click();
-        await expect(this.target_new_arrivals_Selector).toHaveText(expectedPageTitle);
+    async selectCategoryAndAssertDropdown() {
+        await expect(this.categoriesHeaderSelector).toHaveAttribute('aria-expanded','false');
+        await this.categoriesHeaderSelector.click();
+        await expect(this.categoriesHeaderSelector).toHaveAttribute('aria-expanded','true');
     }
 
-        async categoryMenuWithExplore(categoryMenuNumber,expectedPageTitle) {
-        await $(`[data-test="@web/CategoryMenu"] > div > a:nth-child(${categoryMenuNumber})`).click();
-        await this.exploreAll.click();
-        await expect(this.target_new_arrivals_Selector).toHaveText(expectedPageTitle);
+    async selectCategoryAndAssertTitle(categoryMenuName, expectedPageTitle, requiresExplore = false) {
+        const categoryLink = await $(`//div[@data-test="@web/CategoryMenu"]//a/div/span[text()='${categoryMenuName}']`);
+        
+        await expect(categoryLink).toBeExisting({message: `Category menu item "${categoryMenuName}" was not found.`});
+        await categoryLink.click();
+        
+        if (requiresExplore) {
+            await this.exploreAll.click();
+        }
+        await expect(this.pageHeaderTitle).toBeDisplayed();
+        await expect(this.pageHeaderTitle).toHaveText(expectedPageTitle);
     }
 }
 

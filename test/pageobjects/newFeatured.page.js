@@ -7,7 +7,8 @@ class NewFeaturedPage {
     /**
      * define selectors using getter methods
      */
-    get new_Featured_Selector() {
+    get 
+    new_Featured_Selector() {
         return $('[aria-label="New & featured"]');
     }
     
@@ -46,7 +47,52 @@ class NewFeaturedPage {
     get storeEventsPage_Selector() {
         return $('[aria-current="page"]');
     } 
+    
+    get asian_Owned_Selector() {
+        return $('[data-tracking="Asian-Owned Brands at Target"]');
+    }
 
+    get asianOwned_page_Selector() {
+        return $('[data-test="page-title"]');
+    }
+
+    get black_owned_Selector() {
+        return $('[data-tracking="Black-Owned or Founded Brands at Target"]');
+    }
+
+    get blackOwned_page_Selector() {
+        return $('[class="sc-448837bd-1 FcEMs storycard--text"]');
+    }
+
+    get latino_owned_Selector() {
+        return $('[data-tracking="Latino-Owned Brands at Target"]');
+    }
+
+    get latinoOwned_page_Selector() {
+        return $('[data-test="page-title"]');
+    }
+
+    get women_owned_Selector() {
+        return $('[data-tracking="Women-Owned Brands at Target"]');
+    }
+
+    get womenOwned_page_Selector() {
+        return $('[data-test="page-title"]');
+    }
+
+    get lgbtqia_Selector() {
+        return $('[data-tracking="LGBTQIA+ Shop"]');
+    }
+
+    get lgbtqia_page_Selector() {
+        return $('[data-test="page-title"]');
+    }
+
+    async selectCategoryAndAssertDropdown() {
+        await expect(this.new_Featured_Selector).toHaveAttribute('aria-expanded','false');
+        await this.new_Featured_Selector.click();
+        await expect(this.new_Featured_Selector).toHaveAttribute('aria-expanded','true');
+    }
 
     async openNewFeatured() {
         await this.new_Featured_Selector.click();
@@ -83,6 +129,34 @@ class NewFeaturedPage {
         await this.store_Events_Selector.click();
         await expect(this.storeEventsPage_Selector).toHaveText('Store Events');
     }
+
+    async openAsianOwnedBrands() {
+        await this.asian_Owned_Selector.click();
+        await expect(this.asianOwned_page_Selector).toHaveText('AAPI-Owned Brands at Target');
+    }
+
+
+    async openBlackOwnedBrands() {
+        await this.black_owned_Selector.click();
+        await expect(this.blackOwned_page_Selector).toBeDisplayed();
+    }
+
+
+    async openLatinoOwnedBrands() {
+        await this.latino_owned_Selector.click();
+        await expect(this.latinoOwned_page_Selector).toHaveText('Latino-Owned Brands at Target');
+    }
+
+    async openWomenOwnedBrands() {
+        await this.women_owned_Selector.click();
+        await expect(this.womenOwned_page_Selector).toHaveText('Women-Owned Brands at Target');
+    }
+
+    async openLgbtqiaPage() {
+        await this.lgbtqia_Selector.click();
+        await expect(this.lgbtqia_page_Selector).toHaveText('LGBTQIA+ Shop');
+    }
+    
 }
 
 export default new NewFeaturedPage();
