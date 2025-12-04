@@ -1,5 +1,3 @@
-import { browser } from '@wdio/globals'
-import categoriesPage from "../pageobjects/categories.page";
 import newFeaturedPage from "../pageobjects/newFeatured.page";
 
 import basePage from '../pageobjects/base.page';
@@ -38,6 +36,32 @@ describe('open New & Featured', () => {
         await newFeaturedPage.openStoreEvents();
     }) 
 
+    it('should open asian owned brands page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openAsianOwnedBrands();
+    }) 
 
+    it('should open black owned brands page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openBlackOwnedBrands();
+    }) 
 
+    it('should open latino owned brands page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openLatinoOwnedBrands();
+    }) 
+
+    it('should open women owned brands page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openWomenOwnedBrands();
+    }) 
+
+     it('should open LGBTQIA page successfully', async () => {
+        await newFeaturedPage.openNewFeatured();
+        await newFeaturedPage.openLgbtqiaPage();
+    }) 
+
+    it('should open New & Featured dropdown menu successfully', async () => {
+        await newFeaturedPage.selectCategoryAndAssertDropdown();
+    });
 });
