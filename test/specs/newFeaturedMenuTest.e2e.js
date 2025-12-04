@@ -4,7 +4,7 @@ import basePage from '../pageobjects/base.page';
 
 
 before(async function () {
-    await basePage.open();
+    await basePage.openTargetWebsite();
 });
 
 describe('open New & Featured', () => {

@@ -2,7 +2,7 @@ import { browser } from '@wdio/globals'
 
 class BasePage {
 
-    async open() {
+    async openTargetWebsite() {
         await browser.maximizeWindow();
         await browser.url('https://www.target.com/');
     }

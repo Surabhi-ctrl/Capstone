@@ -34,7 +34,7 @@ const menuOptions = [
 ];
 
 before(async function () {
-    await basePage.open(); 
+    await basePage.openTargetWebsite(); 
 });
 
 describe('Category Menu Navigation Tests', () => {
