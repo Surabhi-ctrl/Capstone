@@ -1,18 +1,21 @@
-import { $, $$, expect } from '@wdio/globals'
+import { $, expect } from '@wdio/globals'
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class FeaturedCategoriesPage {
-    /**
-     * define selectors using getter methods
-     */
+
+    get expectedCategoryNames() {
+        return [
+            'Women\'s', 'Men\'s', 'Kids\'', 'Baby', , 'Home', 'Shoes',
+            'Furniture', 'Kitchen', 'Toys', 'Electronics', 'Beauty',
+            'Grocery', 'Household Essentials', 'Top Deals', 'Clearance'
+        ];
+    }
+
     get featured_categories_Menu_Selector() {
         return $('[class="styles_ndsHeading__phw6r styles_fontSize1__OL7f3 styles_x2Margin__ZKMpf styles_heading__myXkA"]');
     }
 
     get shop_All_Menu_Selector() {
-        return $('[href="/c/shop-all-categories/-/N-5xsxf?tag=ShopAll_CN"]');
+        return $('[href="/c/shop-all-categories/-/N-5xsxf"]');
     }
 
     get shop_All_Title_Selector() {
@@ -20,7 +23,7 @@ class FeaturedCategoriesPage {
     }
 
     get featuredCategoriesContainer() {
-        return $('[data-component-title^="HP_CatNav_"]');
+        return $('ul[data-test="pictureNavigation-featured"]');
     }
 
 
@@ -42,7 +45,7 @@ class FeaturedCategoriesPage {
     async checkFeaturedCategoriesList() {
         await this.scrollToFeaturedCategories();
         const gridItems = await this.getGridItems();
-        await expect(gridItems).toHaveLength(18);
+        await expect(gridItems).toHaveLength(15);
     }
 
     async verifyCategoryNames(expectedNames) {
@@ -58,19 +61,19 @@ class FeaturedCategoriesPage {
     }
 
     async verifyCategoryImages() {
-    await this.scrollToFeaturedCategories();
+        await this.scrollToFeaturedCategories();
         const gridItems = await this.getGridItems();
 
-    for (let i = 0; i < gridItems.length; i++) {
-        const item = gridItems[i];
-        
-        const imageElement = await item.$('img'); 
-        await expect(imageElement).toBeDisplayed({ message: `Image for item #${i + 1} is not displayed.` });
-        
-        const imageSrc = await imageElement.getAttribute('src');
-        await expect(imageSrc.length).toBeGreaterThan(0, { message: `Image for item #${i + 1} has an empty 'src' attribute.` });
+        for (let i = 0; i < gridItems.length; i++) {
+            const item = gridItems[i];
+
+            const imageElement = await item.$('img');
+            await expect(imageElement).toBeDisplayed({ message: `Image for item #${i + 1} is not displayed.` });
+
+            const imageSrc = await imageElement.getAttribute('src');
+            await expect(imageSrc.length).toBeGreaterThan(0, { message: `Image for item #${i + 1} has an empty 'src' attribute.` });
+        }
     }
-}
 
 }
 
