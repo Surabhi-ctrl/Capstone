@@ -1,3 +1,5 @@
+import basePage from "./test/pageobjects/basePage";
+
 export const config = {
     //
     // ====================
@@ -21,8 +23,8 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
-        // './test/specs/newFeaturedMenuTest.e2e.js'
+        './test/specs/**.js'
+        // './test/specs/featuredCategoriesMenuTest.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -244,8 +246,11 @@ export const config = {
      * @param {number} result 0 - command success, 1 - command error
      * @param {object} error error object if any
      */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
+    afterCommand: async function (commandName, args, result, error) {
+        if (['click', 'url', 'refresh', 'setValue', 'keys', 'scrollIntoView'].includes(commandName)) {
+            await basePage.handleSurveyAlert();
+        }
+    },
     /**
      * Gets executed after all tests are done. You still have access to all global variables from
      * the test.
