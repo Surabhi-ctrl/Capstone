@@ -11,11 +11,11 @@ describe('Featured Categories Content and Usability Tests', () => {
         await featuredCategoriesPage.scrollToFeaturedCategories();
     })
 
-    it('should able to see featured 15 categories to shop', async () => {
+    it('should able to see featured 18 categories to shop', async () => {
         await featuredCategoriesPage.checkFeaturedCategoriesList();
     })
 
-    it('should verify all 15 Featured Category names are correct and present', async () => {
+    it('should verify all 18 Featured Category names are correct and present', async () => {
         await featuredCategoriesPage.verifyCategoryNames(featuredCategoriesPage.expectedCategoryNames);
     });
 
