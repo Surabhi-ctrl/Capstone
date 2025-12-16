@@ -4,9 +4,10 @@ class FeaturedCategoriesPage {
 
     get expectedCategoryNames() {
         return [
-            'Women\'s', 'Men\'s', 'Kids\'', 'Baby', , 'Home', 'Shoes',
-            'Furniture', 'Kitchen', 'Toys', 'Electronics', 'Beauty',
-            'Grocery', 'Household Essentials', 'Top Deals', 'Clearance'
+            'Women’s', 'Men’s', 'Kids’', 'Baby', , 'Home',
+            'Health', 'Apple', 'Toys', 'Electronics', 'Beauty',
+            'Grocery', 'Household Essentials', 'Kitchen & Dining', 'Clearance',
+            'New Arrivals', 'Christmas', 'Hanukkah', 'Gift Ideas'
         ];
     }
 
@@ -15,15 +16,15 @@ class FeaturedCategoriesPage {
     }
 
     get shop_All_Menu_Selector() {
-        return $('[href="/c/shop-all-categories/-/N-5xsxf"]');
+        return $('[href="/c/shop-all-categories/-/N-5xsxf?tag=ShopAll_CN"]');
     }
 
     get shop_All_Title_Selector() {
         return $('[data-test="page-title"]');
-    }
+    } 
 
     get featuredCategoriesContainer() {
-        return $('ul[data-test="pictureNavigation-featured"]');
+        return $('div[data-component-title^="HP_CatNav"]');
     }
 
 
@@ -45,7 +46,7 @@ class FeaturedCategoriesPage {
     async checkFeaturedCategoriesList() {
         await this.scrollToFeaturedCategories();
         const gridItems = await this.getGridItems();
-        await expect(gridItems).toHaveLength(15);
+        await expect(gridItems).toHaveLength(18);
     }
 
     async verifyCategoryNames(expectedNames) {
